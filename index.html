@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student and Staff Portal</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- Login and Signup Form -->
+    <div id="auth-container" class="card">
+      <h2>Student and Staff Portal</h2>
+      <p id="error-msg"></p>
+
+      <!-- Signup Form -->
+      <div id="signup-section">
+        <h3>Sign Up</h3>
+        <button onclick="startStudentSignup()">Student Sign Up (Scan QR)</button>
+        <form id="staff-signup-form" onsubmit="handleStaffSignup(event)">
+          <label for="staffName">Staff Name:</label>
+          <input type="text" id="staffName" required>
+          <label for="staffPassword">Password:</label>
+          <input type="password" id="staffPassword" required>
+          <button type="submit">Staff Sign Up</button>
+        </form>
+      </div>
+
+      <!-- Login Form -->
+      <div id="login-section">
+        <h3>Login</h3>
+        <form id="login-form" onsubmit="handleLogin(event)">
+          <label for="loginId">ID or Name:</label>
+          <input type="text" id="loginId" required>
+          <label for="loginPassword">Password (for Staff):</label>
+          <input type="password" id="loginPassword">
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Student Home Page -->
+    <div id="student-home" class="card hidden">
+      <h2>Welcome, <span id="student-name"></span></h2>
+      <p>Your weekly usage: <span id="usage-count">0</span> / 2</p>
+      <input type="button" value="Logout" onclick="logout()">
+    </div>
+
+    <!-- Staff Home Page -->
+    <div id="staff-home" class="card hidden">
+      <h2>Welcome, <span id="staff-name-display"></span></h2>
+      <button onclick="startQRScan()">Scan Student QR Code</button>
+      <div id="scan-result" class="hidden">
+        <h3>Student Usage History</h3>
+        <p id="student-id"></p>
+        <ul id="usage-history"></ul>
+      </div>
+      <input type="button" value="Logout" onclick="logout()">
+    </div>
+  </div>
+
+  <!-- QR Code Scanner Library (QrScanner) -->
+  <script src="https://unpkg.com/qr-scanner/qr-scanner.min.js"></script>
+</body>
+</html>
